@@ -3,6 +3,7 @@
 namespace Gnugat\Phpixture;
 
 use Gnugat\Phpixture\ValueSwitcher\KeepAsIsStrategy;
+use Gnugat\Phpixture\ValueSwitcher\ToManyRelationshipStrategy;
 use Gnugat\Phpixture\ValueSwitcher\ToOneRelationshipStrategy;
 use Gnugat\Phpixture\ValueSwitcher\ValueSwitcher;
 
@@ -25,6 +26,7 @@ class Repository
     {
         $this->fixtures = $fixtures;
         $this->valueSwitcher = new ValueSwitcher();
+        $this->valueSwitcher->add(new ToManyRelationshipStrategy($fixtures));
         $this->valueSwitcher->add(new ToOneRelationshipStrategy($fixtures));
         $this->valueSwitcher->add(new KeepAsIsStrategy());
     }
@@ -38,19 +40,13 @@ class Repository
     {
         $fixtures = array();
         foreach ($this->fixtures[$name] as $fixture) {
-            $fixtures[] = $this->handleRelationships($fixture);
+            $switchedFields = array();
+            foreach ($fixture as $name => $value) {
+                $switchedFields[$name] = $this->valueSwitcher->switchValue($value);
+            }
+            $fixtures[] = $switchedFields;
         }
 
         return $fixtures;
-    }
-
-    private function handleRelationships(array $fields)
-    {
-        $replacedFields = array();
-        foreach ($fields as $name => $value) {
-            $replacedFields[$name] = $this->valueSwitcher->switchValue($value);
-        }
-
-        return $replacedFields;
     }
 }

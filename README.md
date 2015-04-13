@@ -12,13 +12,30 @@ $fixtures = array(
         'news' => array(
             'id' => 1,
             'name' => 'news',
+            'articles' => array(
+                '@introducing_phpixtures',
+                '@phpixtures_v0_2_0',
+                '@phpixtures_v0_3_0',
+            ),
         ),
     ),
     'articles' => array(
         'introducing_phpixtures' => array(
             'id' => 1,
-            'title' => 'Introducing Phpixture',
+            'title' => 'Introducing Phpixture v0.1.0',
             'content' => 'Yet another fixture library!',
+            'tag' => '@news',
+        ),
+        'phpixtures_v0_2_0' => array(
+            'id' => 2,
+            'title' => 'Phpixture v0.2.0',
+            'content' => 'Added ToOne relationship management',
+            'tag' => '@news',
+        ),
+        'phpixtures_v0_3_0' => array(
+            'id' => 3,
+            'title' => 'Phpixture v0.3.0',
+            'content' => 'Added ToMany relationship management',
             'tag' => '@news',
         ),
     ),
@@ -30,13 +47,30 @@ $articles = $repository->findAll('articles');
 // array(
 //     array(
 //         'id' => 1,
-//         'title' => 'Introducing Phpixture',
+//         'title' => 'Introducing Phpixture v0.1.0',
 //         'content' => 'Yet another fixture library!',
 //         'tag' => array(
 //             'id' => 1,
 //             'name' => 'news',
 //         ),
-//     )
+//     ),
+//     ...
+// )
+
+$tags = $repository->findAll('tags');
+// array(
+//     'news' => array(
+//         'id' => 1,
+//         'name' => 'news',
+//         'articles' => array(
+//             array(
+//                 'id' => 1,
+//                 'title' => 'Introducing Phpixture v0.1.0',
+//                 'content' => 'Yet another fixture library!',
+//             ),
+//             ...
+//         ),
+//     ),
 // )
 ```
 

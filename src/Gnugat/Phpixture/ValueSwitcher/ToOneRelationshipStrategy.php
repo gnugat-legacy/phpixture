@@ -19,7 +19,7 @@ class ToOneRelationshipStrategy implements ValueSwitcherStrategy
      */
     public function supports($value)
     {
-        return is_string($value) && !empty($value) && $value[0];
+        return is_to_one_relationship($value);
     }
 
     /**
@@ -30,7 +30,7 @@ class ToOneRelationshipStrategy implements ValueSwitcherStrategy
         $name = substr($value, 1);
         foreach ($this->fixtures as $fixtures) {
             if (isset($fixtures[$name])) {
-                return $fixtures[$name];
+                return filter_relationship($fixtures[$name]);
             }
         }
 

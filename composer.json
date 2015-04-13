@@ -16,7 +16,12 @@
     "autoload": {
         "psr-4": {
             "Gnugat\\Phpixture\\": "src/Gnugat/Phpixture"
-        }
+        },
+        "files": [
+            "src/Gnugat/Phpixture/ValueSwitcher/is_to_one_relationship.php",
+            "src/Gnugat/Phpixture/ValueSwitcher/is_to_many_relationship.php",
+            "src/Gnugat/Phpixture/ValueSwitcher/filter_relationship.php"
+        ]
     },
     "require": {
         "php": ">=5.3.3"

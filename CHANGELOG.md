@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.3.0: ToMany relationship management
+
+* Created filter_relationship
+* Created is_to_many_relationship
+* Created is_to_one_relationship
+* Created ToManyRelationshipStrategy
+
 ## 0.2.0: ToOne relationship management
 
 * Created KeepAsIsStrategy
