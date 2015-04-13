@@ -19,6 +19,7 @@ $fixtures = array(
             'id' => 1,
             'title' => 'Introducing Phpixture',
             'content' => 'Yet another fixture library!',
+            'tag' => '@news',
         ),
     ),
 );
@@ -31,6 +32,10 @@ $articles = $repository->findAll('articles');
 //         'id' => 1,
 //         'title' => 'Introducing Phpixture',
 //         'content' => 'Yet another fixture library!',
+//         'tag' => array(
+//             'id' => 1,
+//             'name' => 'news',
+//         ),
 //     )
 // )
 ```

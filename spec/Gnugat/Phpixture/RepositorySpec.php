@@ -9,12 +9,6 @@ class RepositorySpec extends ObjectBehavior
     function it_finds_all_fixture_for_given_key()
     {
         $this->beConstructedWith(array(
-            'tags' => array(
-                'news' => array(
-                    'id' => 1,
-                    'name' => 'news',
-                ),
-            ),
             'articles' => array(
                 'introducing_phpixtures' => array(
                     'id' => 1,
@@ -29,6 +23,38 @@ class RepositorySpec extends ObjectBehavior
                 'id' => 1,
                 'title' => 'Introducing Phpixture',
                 'content' => 'Yet another fixture library!',
+            ),
+        ));
+    }
+
+    function it_handles_one_to_one_relationship()
+    {
+        $this->beConstructedWith(array(
+            'tags' => array(
+                'news' => array(
+                    'id' => 1,
+                    'name' => 'news',
+                ),
+            ),
+            'articles' => array(
+                'introducing_phpixtures' => array(
+                    'id' => 1,
+                    'title' => 'Introducing Phpixture',
+                    'content' => 'Yet another fixture library!',
+                    'tag' => '@news',
+                ),
+            ),
+        ));
+
+        $this->findAll('articles')->shouldBe(array(
+            array(
+                'id' => 1,
+                'title' => 'Introducing Phpixture',
+                'content' => 'Yet another fixture library!',
+                'tag' => array(
+                    'id' => 1,
+                    'name' => 'news',
+                ),
             ),
         ));
     }
