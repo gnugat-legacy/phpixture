@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1: Fixed filtering empty ToMany relations
+
+* Fixed filtering empty ToMany relations
+
 ## 0.3.0: ToMany relationship management
 
 * Created filter_relationship

@@ -32,7 +32,7 @@ class ToManyRelationshipStrategy implements ValueSwitcherStrategy
             $name = substr($subValue, 1);
             foreach ($this->fixtures as $fixtures) {
                 if (isset($fixtures[$name])) {
-                    $switchedValue[] = filter_relationship($fixtures[$name]);
+                    $switchedValue[] = filter_relationship($this->fixtures, $fixtures[$name]);
                 }
             }
         }

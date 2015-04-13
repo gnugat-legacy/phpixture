@@ -30,7 +30,7 @@ class ToOneRelationshipStrategy implements ValueSwitcherStrategy
         $name = substr($value, 1);
         foreach ($this->fixtures as $fixtures) {
             if (isset($fixtures[$name])) {
-                return filter_relationship($fixtures[$name]);
+                return filter_relationship($this->fixtures, $fixtures[$name]);
             }
         }
 
